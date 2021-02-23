@@ -21,35 +21,26 @@ const EditProfile = ({navigation, update}) => {
     {label: 'Intern', value: 'Intern'},
     {label: 'Other', value: 'Other'},
   ];
-  const [levels, setLevels] = useState(null);
+  const [status, setStatus] = useState(null);
   const [company, setCompany] = useState('');
   const [website, setWebsite] = useState('');
   const [location, setLocation] = useState('');
   const [skills, setSkills] = useState('');
-  const [githubName, setGithubName] = useState('');
+  const [github, setGithub] = useState('');
   const [tellUs, setTellUs] = useState('');
-  const [youtube, setYoutube] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [linkedIn, setLinkedIn] = useState('');
-  const [instagram, setInstagram] = useState('');
   const editProfile = () => {
-    console.log(levels);
-    console.log(company, website, location, skills, githubName, tellUs);
+    console.log(status, company, website, location, skills, github, tellUs);
     update.updateProfile(
-      levels,
+      status,
       company,
       website,
       location,
       skills,
+      github,
       tellUs,
-      twitter,
-      facebook,
-      youtube,
-      linkedIn,
-      instagram,
       navigation,
     );
+    goBack();
   };
   const goBack = () => {
     navigation.navigate('Home');
@@ -66,7 +57,7 @@ const EditProfile = ({navigation, update}) => {
         <Text>require field</Text>
         <View style={styles.inputEdit}>
           <RNPickerSelect
-            onValueChange={(value) => setLevels(value)}
+            onValueChange={(value) => setStatus(value)}
             useNativeAndroidPickerStyle={false}
             placeholder={{label: 'Select Professional Status', value: null}}
             items={itemSelectBox}
@@ -115,8 +106,8 @@ const EditProfile = ({navigation, update}) => {
           <TextInput
             style={styles.inputEdit}
             placeholder={'Github Username'}
-            onChangeText={(value) => setGithubName(value)}
-            value={githubName}
+            onChangeText={(value) => setGithub(value)}
+            value={github}
           />
           <Text style={styles.textSmall}>
             If you want your latest repo and a Github link, include your

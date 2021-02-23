@@ -1,6 +1,6 @@
 //import liraries
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Icon } from 'native-base';
+import {Icon} from 'native-base';
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -38,7 +38,7 @@ const Home = ({navigation, infoProfile, route, profile}) => {
   };
   return (
     <View style={styles.container}>
-      {infoProfile?.data?.msg ? (
+      {infoProfile.data == null ? (
         <View style={{paddingLeft: 50}}>
           <Text style={styles.titleDashboard}>Dashboard</Text>
           <Text style={styles.subTitleDashboard}>

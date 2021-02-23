@@ -4,8 +4,6 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
-  CHECK_PROFILE_SUCCESS,
-  CHECK_PROFILE_REQUEST,
 } from '../type';
 import API from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
