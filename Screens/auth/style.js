@@ -122,6 +122,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonLogout: {
+    backgroundColor: 'red',
+    width: 90,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+  },
   inputSelectBox: {
     marginTop: 20,
     width: '90%',
@@ -135,7 +143,7 @@ export const styles = StyleSheet.create({
     paddingRight: 30, //
   },
   buttonAddSocial: {
-    width: '100%',
+    width: '70%',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -153,7 +161,6 @@ export const styles = StyleSheet.create({
     borderColor: 'gray',
     color: 'red',
     marginVertical: 10,
-
   },
   buttonSubmit: {
     width: 100,

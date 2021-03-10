@@ -4,8 +4,8 @@ import {View, Text, StyleSheet} from 'react-native';
 import AuthLoading from '../Screens/auth/AuthLoading';
 import SignIn from '../Screens/auth/SignIn';
 import SignUp from '../Screens/auth/SignUp';
-import Profile from '../Screens/profile/Profile';
-import EditProfile from '../Screens/profile/EditProfile';
+import Home from '../Screens/home/Home';
+import CreateProfile from '../Screens/profile/CreateProfile';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -18,13 +18,11 @@ const AppNavigation = () => {
         screenOptions={{
           headerShown: false,
         }}>
-          
         <Stack.Screen name="AuthLoading" component={AuthLoading} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="CreateProfile" component={CreateProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -28,7 +28,7 @@ const EditProfile = ({navigation, update}) => {
   const [skills, setSkills] = useState('');
   const [github, setGithub] = useState('');
   const [tellUs, setTellUs] = useState('');
-  const editProfile = () => {
+  const editProfileDEV = () => {
     console.log(status, company, website, location, skills, github, tellUs);
     update.updateProfile(
       status,
@@ -43,7 +43,7 @@ const EditProfile = ({navigation, update}) => {
     goBack();
   };
   const goBack = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Profile');
   };
   return (
     <ScrollView>
@@ -140,7 +140,9 @@ const EditProfile = ({navigation, update}) => {
           </Text>
         </View>
         <View style={{flexDirection: 'row', marginVertical: 30}}>
-          <TouchableOpacity style={styles.buttonSubmit} onPress={editProfile}>
+          <TouchableOpacity
+            style={styles.buttonSubmit}
+            onPress={editProfilDEVe}>
             <Text style={{color: 'white'}}>Submit</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonGoBack} onPress={goBack}>
@@ -160,4 +162,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 //make this component available to the app
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileDEV);

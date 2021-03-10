@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProfileAction from '../../redux/actions/profileAction';
 import {styles} from '../auth/style';
+import CreateProfile from './CreateProfile';
 // create a component
 
 const Profile = ({navigation, infoProfile, route, profile}) => {
@@ -31,6 +32,9 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
   const nextScreenEdit = () => {
     navigation.navigate('EditProfile');
   };
+  const nextScreenCreate = () => {
+    navigation.navigate('CreateProfile');
+  };
   const removeToken = async () => {
     console.log('test 222');
     await AsyncStorage.removeItem('@token');
@@ -48,12 +52,14 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
           <Text style={styles.textProfile}>
             You have not yet setup a profile, please add some info
           </Text>
-          <TouchableOpacity style={styles.buttonDashboard}>
-            <Text style={{color: 'white', fontWeight: '700'}}>
-              Create Profile
-            </Text>
+          <TouchableOpacity
+            style={styles.buttonDashboard}
+            onPress={nextScreenCreate}>
+            <Text style={{color: 'white'}}>Create Profile</Text>
           </TouchableOpacity>
-          <Button title={'logout'} onPress={removeToken}></Button>
+          <TouchableOpacity onPress={removeToken} style={styles.buttonLogout}>
+            <Text style={{color: 'white', fontWeight: '500'}}>LogOut</Text>
+          </TouchableOpacity>
         </View>
       ) : (
         <View style={{marginHorizontal: 50, marginLeft: 30}}>
@@ -100,6 +106,11 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
             <Text style={styles.itemEXp}>18/05/2020 - Now</Text>
             <TouchableOpacity style={styles.buttonDelete}>
               <Text style={{color: 'white', fontWeight: '500'}}>Delete</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableOpacity onPress={removeToken} style={styles.buttonLogout}>
+              <Text style={{color: 'white', fontWeight: '500'}}>LogOut</Text>
             </TouchableOpacity>
           </View>
         </View>

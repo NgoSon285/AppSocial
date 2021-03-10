@@ -32,7 +32,6 @@ export function* onSignIn(action) {
 
     yield put({type: SIGN_IN_SUCCESS, data: result.data});
     yield AsyncStorage.setItem('@token', result.data.token);
-    // yield put({type: CHECK_PROFILE_REQUEST})
     console.log('token', result.data.token);
     if (action.navigation) {
       action.navigation.navigate('Home');

@@ -1,16 +1,15 @@
 //import liraries
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const Stack = createStackNavigator();
-// create a component
+import Profile from '../profile/Profile';
+const Tab = createBottomTabNavigator();
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 };
 
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#fff',
   },
 });
 

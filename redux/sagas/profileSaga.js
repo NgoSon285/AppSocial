@@ -4,12 +4,15 @@ import {
   CHECK_PROFILE_REQUEST,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
+  CREATE_PROFILE_REQUEST,
+  CREATE_PROFILE_SUCCESS,
 } from '../type';
 import API from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export function* checkProfile(action) {
+export function* checkProfile() {
   try {
+    console.log('2');
     let result = yield API.get('api/profile/me');
     yield put({type: CHECK_PROFILE_SUCCESS, data: result.data});
   } catch (error) {
@@ -19,14 +22,13 @@ export function* checkProfile(action) {
 export function* updateProfileSaga(action) {
   try {
     let result = yield API.post('/api/profile', {
-      status:action.status,
-      company:action.company,
-      website:action.website,
-      location:action.location,
-      skills:action.skills,
-      github:action.github,
-      tellUs:action.tellUs,
-      
+      status: action.status,
+      company: action.company,
+      website: action.website,
+      location: action.location,
+      skills: action.skills,
+      github: action.github,
+      tellUs: action.tellUs,
     });
     console.log('A');
     yield put({type: UPDATE_PROFILE_SUCCESS, data: result.data});
@@ -34,9 +36,28 @@ export function* updateProfileSaga(action) {
     console.log('error update profile saga', error);
   }
 }
+export function* createProfileSaga(action) {
+  try {
+    let result = yield API.post('/api/profile', {
+      status: action.status,
+      company: action.company,
+      website: action.website,
+      location: action.location,
+      skills: action.skills,
+      github: action.github,
+      tellUs: action.tellUs,
+    });
+    yield put({type: CREATE_PROFILE_SUCCESS, data: result.data});
+  } catch (error) {
+    console.log('error create profile saga', error);
+  }
+}
 export function* watchProfile() {
   yield takeLatest(CHECK_PROFILE_REQUEST, checkProfile);
 }
 export function* watchUpdateProfile() {
   yield takeLatest(UPDATE_PROFILE_REQUEST, updateProfileSaga);
+}
+export function* watchCreateProfile() {
+  yield takeLatest(CREATE_PROFILE_REQUEST, createProfileSaga);
 }
