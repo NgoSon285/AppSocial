@@ -2,6 +2,7 @@ import {
   CHECK_PROFILE_REQUEST,
   UPDATE_PROFILE_REQUEST,
   CREATE_PROFILE_REQUEST,
+  GET_ALL_PROFILE_REQUES,
 } from '../type';
 
 export const checkProfile = () => ({
@@ -16,6 +17,8 @@ export const updateProfile = (
   github,
   tellUs,
   navigation,
+  exp,
+  edu,
 ) => ({
   type: UPDATE_PROFILE_REQUEST,
   status,
@@ -26,6 +29,8 @@ export const updateProfile = (
   github,
   tellUs,
   navigation,
+  exp,
+  edu,
 });
 export const createProfile = (
   status,
@@ -46,4 +51,7 @@ export const createProfile = (
   github,
   tellUs,
   navigation,
+});
+export const getAllProfile = () => ({
+  type: GET_ALL_PROFILE_REQUES,
 });

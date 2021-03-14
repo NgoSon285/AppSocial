@@ -13,6 +13,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProfileAction from '../../redux/actions/profileAction';
+
 const CreateProfile = ({navigation, createProfile}) => {
   const itemSelectBox = [
     {label: 'Developer', value: 'Developer'},
@@ -181,6 +182,12 @@ const CreateProfile = ({navigation, createProfile}) => {
               <View>
                 <TextInput
                   style={styles.inputEdit}
+                  placeholder={'Position'}
+                  value={status}
+                  onChangeText={(value) => setStatus(value)}
+                />
+                <TextInput
+                  style={styles.inputEdit}
                   placeholder={'Company'}
                   value={company}
                   onChangeText={(value) => setCompany(value)}
@@ -197,6 +204,7 @@ const CreateProfile = ({navigation, createProfile}) => {
                 <Text style={styles.textSmall}>
                   Could be your own or a company website
                 </Text>
+
                 <TextInput
                   style={styles.inputEdit}
                   placeholder={'Location'}
@@ -205,6 +213,15 @@ const CreateProfile = ({navigation, createProfile}) => {
                 />
                 <Text style={styles.textSmall}>
                   City & state suggested (eg. Boston, MA)
+                </Text>
+                <TextInput
+                  style={styles.inputEdit}
+                  placeholder={'Skills'}
+                  onChangeText={(value) => setSkills(value)}
+                  value={skills}
+                />
+                <Text style={styles.textSmall}>
+                  Please use comma separated values (eg. English,Japanese)
                 </Text>
                 <TextInput
                   multiline={true}

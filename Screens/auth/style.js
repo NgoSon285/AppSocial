@@ -7,6 +7,25 @@ export const styles = StyleSheet.create({
     paddingTop: 50,
     backgroundColor: '#fff',
   },
+  text: {
+    color: 'white',
+  },
+  cover: {width, height: height * 0.25},
+  avatar: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // position: 'relative',
+    zIndex: 1,
+  },
+  avatarimg: {
+    width: 200,
+    height: 200,
+    borderRadius: 150,
+    position: 'absolute',
+    borderWidth: 5,
+    borderColor: 'white',
+  },
   logo: {
     width,
     height: height * 0.3,
@@ -159,7 +178,6 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: 'gray',
-    color: 'red',
     marginVertical: 10,
   },
   buttonSubmit: {
@@ -177,5 +195,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
+  },
+  title: {fontSize: 30, fontWeight: '800'},
+  name: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 120,
+    marginBottom: 20,
+  },
+  subTitle: {
+    fontSize: 18,
+    fontWeight: '600',
   },
 });

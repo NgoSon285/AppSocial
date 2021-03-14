@@ -4,36 +4,33 @@ import {Icon} from 'native-base';
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProfileAction from '../../redux/actions/profileAction';
 import {styles} from '../auth/style';
-import CreateProfile from './CreateProfile';
+
 // create a component
 
 const Profile = ({navigation, infoProfile, route, profile}) => {
-  const [data, setData] = useState('');
+  // const [data, setData] = useState('');
   const [email, setEmail] = useState('');
   useEffect(() => {
     if (route.params?.email) {
       setEmail(route.params.email);
-      // Post updated, do something with `route.params.post`
-      // For example, send the post to the server
     }
   }, [route.params?.email]);
-  useEffect(() => {
-    CheckProfile();
-  }, []);
-  const CheckProfile = () => {
-    profile.checkProfile();
-  };
-  console.log('info', infoProfile.data);
+  console.log('info', infoProfile);
   const nextScreenEdit = () => {
     navigation.navigate('EditProfile');
   };
   const nextScreenCreate = () => {
     navigation.navigate('CreateProfile');
+  };
+  const nextScreenAddExperience = () => {
+    navigation.navigate('AddExperience');
+  };
+  const nextScrennEducation = () => {
+    navigation.navigate('AddEducation');
   };
   const removeToken = async () => {
     console.log('test 222');
@@ -42,7 +39,7 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
   };
   return (
     <View style={styles.container}>
-      {infoProfile.data == null ? (
+      {infoProfile == null ? (
         <View style={{paddingLeft: 50}}>
           <Text style={styles.titleDashboard}>Dashboard</Text>
           <Text style={styles.subTitleDashboard}>
@@ -74,10 +71,14 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
               onPress={nextScreenEdit}>
               <Text style={{color: 'white'}}>Edit Profile</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonManageDashboard}>
+            <TouchableOpacity
+              style={styles.buttonManageDashboard}
+              onPress={nextScreenAddExperience}>
               <Text style={{color: 'white'}}>Add Experience</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonManageDashboard}>
+            <TouchableOpacity
+              style={styles.buttonManageDashboard}
+              onPress={nextScrennEducation}>
               <Text style={{color: 'white'}}>Add Education</Text>
             </TouchableOpacity>
           </View>
@@ -123,7 +124,7 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
 
 //make this component available to the app
 const mapStateToProps = (state) => ({
-  infoProfile: state.profileReducer,
+  infoProfile: state.profileReducer.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,7 +1,12 @@
 import {all, call, delay, put, takeEvery, takeLatest} from 'redux-saga/effects';
 import {ADD, ADD_REQUEST, SIGN_UP_REQUEST} from '../type';
 import {watchSignIn, watchSignUp} from './authSaga';
-import {watchProfile, watchUpdateProfile} from './profileSaga';
+import {
+  watchAllProfile,
+  watchCreateProfile,
+  watchProfile,
+  watchUpdateProfile,
+} from './profileSaga';
 
 export function* helloSaga() {
   console.log('Hello Saga!');
@@ -15,5 +20,7 @@ export default function* rootSaga() {
     call(watchSignIn),
     call(watchProfile),
     call(watchUpdateProfile),
+    call(watchCreateProfile),
+    call(watchAllProfile),
   ]);
 }

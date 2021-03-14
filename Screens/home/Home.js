@@ -1,13 +1,24 @@
 //import liraries
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as ProfileAction from '../../redux/actions/profileAction';
 import Profile from '../profile/Profile';
+import DevelopeScreen from '../profile/DevelopeScreen';
+
 const Tab = createBottomTabNavigator();
-const Home = () => {
+const Home = ({profile}) => {
+  useEffect(() => {
+    CheckProfile();
+  }, []);
+  const CheckProfile = () => {
+    profile.checkProfile();
+  };
   return (
     <Tab.Navigator>
+      <Tab.Screen name="DevelopeScreen" component={DevelopeScreen} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
@@ -22,6 +33,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  profile: bindActionCreators(ProfileAction, dispatch),
+});
 //make this component available to the app
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

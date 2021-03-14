@@ -6,13 +6,14 @@ import {
   UPDATE_PROFILE_SUCCESS,
   CREATE_PROFILE_REQUEST,
   CREATE_PROFILE_SUCCESS,
+  GET_ALL_PROFILE_REQUES,
+  GET_ALL_PROFILE_SUCCESS,
 } from '../type';
 import API from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function* checkProfile() {
   try {
-    console.log('2');
     let result = yield API.get('api/profile/me');
     yield put({type: CHECK_PROFILE_SUCCESS, data: result.data});
   } catch (error) {
@@ -30,7 +31,7 @@ export function* updateProfileSaga(action) {
       github: action.github,
       tellUs: action.tellUs,
     });
-    console.log('A');
+
     yield put({type: UPDATE_PROFILE_SUCCESS, data: result.data});
   } catch (error) {
     console.log('error update profile saga', error);
@@ -46,10 +47,21 @@ export function* createProfileSaga(action) {
       skills: action.skills,
       github: action.github,
       tellUs: action.tellUs,
+      exp: action.experience,
+      edu: action.education,
     });
     yield put({type: CREATE_PROFILE_SUCCESS, data: result.data});
   } catch (error) {
     console.log('error create profile saga', error);
+  }
+}
+
+export function* getAllProfilesSaga(action) {
+  try {
+    let result = yield API.get('/api/profile');
+    yield put({type: GET_ALL_PROFILE_SUCCESS, data: result.data});
+  } catch (error) {
+    console.log('error all profile saga', error);
   }
 }
 export function* watchProfile() {
@@ -60,4 +72,7 @@ export function* watchUpdateProfile() {
 }
 export function* watchCreateProfile() {
   yield takeLatest(CREATE_PROFILE_REQUEST, createProfileSaga);
+}
+export function* watchAllProfile() {
+  yield takeEvery(GET_ALL_PROFILE_REQUES, getAllProfilesSaga);
 }

@@ -6,9 +6,12 @@ import SignIn from '../Screens/auth/SignIn';
 import SignUp from '../Screens/auth/SignUp';
 import Home from '../Screens/home/Home';
 import CreateProfile from '../Screens/profile/CreateProfile';
+import EditProfile from '../Screens/profile/EditProfile';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import AddExperience from '../Screens/profile/AddExperience';
+import AddEducation from '../Screens/profile/AddEducation';
+import ProfileDetail from '../Screens/profile/ProfileDetail';
 const Stack = createStackNavigator();
 // create a component
 const AppNavigation = () => {
@@ -23,6 +26,10 @@ const AppNavigation = () => {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="CreateProfile" component={CreateProfile} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="AddExperience" component={AddExperience} />
+        <Stack.Screen name="AddEducation" component={AddEducation} />
+        <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

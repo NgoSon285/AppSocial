@@ -1,5 +1,5 @@
 //import liraries
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
 import {styles} from '../auth/style';
 import {Container, Header, Content, Icon} from 'native-base';
@@ -9,8 +9,9 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProfileAction from '../../redux/actions/profileAction';
+
 // import {TextInput} from 'react-native-gesture-handler';
-const EditProfile = ({navigation, update}) => {
+const EditProfile = ({navigation, update, data}) => {
   const itemSelectBox = [
     {label: 'Developer', value: 'Developer'},
     {label: 'Junior Developer', value: 'Junior Developer'},
@@ -28,8 +29,10 @@ const EditProfile = ({navigation, update}) => {
   const [skills, setSkills] = useState('');
   const [github, setGithub] = useState('');
   const [tellUs, setTellUs] = useState('');
-  const editProfileDEV = () => {
-    console.log(status, company, website, location, skills, github, tellUs);
+  useEffect(() => {
+    renderData();
+  }, []);
+  const editProfile = () => {
     update.updateProfile(
       status,
       company,
@@ -45,6 +48,14 @@ const EditProfile = ({navigation, update}) => {
   const goBack = () => {
     navigation.navigate('Profile');
   };
+  const renderData = () => {
+    console.log(data);
+    setStatus(data.status);
+    setCompany(data.company);
+    setWebsite(data.website);
+    setLocation(data.location);
+    setGithub(data.github);
+  };
   return (
     <ScrollView>
       <View style={{marginVertical: 50, marginLeft: 50}}>
@@ -57,6 +68,7 @@ const EditProfile = ({navigation, update}) => {
         <Text>require field</Text>
         <View style={styles.inputEdit}>
           <RNPickerSelect
+            value={status}
             onValueChange={(value) => setStatus(value)}
             useNativeAndroidPickerStyle={false}
             placeholder={{label: 'Select Professional Status', value: null}}
@@ -140,9 +152,7 @@ const EditProfile = ({navigation, update}) => {
           </Text>
         </View>
         <View style={{flexDirection: 'row', marginVertical: 30}}>
-          <TouchableOpacity
-            style={styles.buttonSubmit}
-            onPress={editProfilDEVe}>
+          <TouchableOpacity style={styles.buttonSubmit} onPress={editProfile}>
             <Text style={{color: 'white'}}>Submit</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonGoBack} onPress={goBack}>
@@ -155,11 +165,13 @@ const EditProfile = ({navigation, update}) => {
 };
 
 // define your styles
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  data: state.profileReducer.data,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   update: bindActionCreators(ProfileAction, dispatch),
 });
 
 //make this component available to the app
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfileDEV);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
