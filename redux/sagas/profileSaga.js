@@ -20,6 +20,7 @@ export function* checkProfile() {
     console.log(' error check profile ', error);
   }
 }
+
 export function* updateProfileSaga(action) {
   try {
     let result = yield API.post('/api/profile', {
@@ -55,7 +56,15 @@ export function* createProfileSaga(action) {
     console.log('error create profile saga', error);
   }
 }
-
+export function*  updateEducation(action){
+  try {
+    let result = yield API.post('api/profile/me',{
+      
+    })
+  } catch (error) {
+    
+  }
+}
 export function* getAllProfilesSaga(action) {
   try {
     let result = yield API.get('/api/profile');

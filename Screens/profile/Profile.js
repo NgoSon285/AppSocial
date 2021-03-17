@@ -12,8 +12,11 @@ import {styles} from '../auth/style';
 // create a component
 
 const Profile = ({navigation, infoProfile, route, profile}) => {
-  // const [data, setData] = useState('');
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('');
+  const [skill, setSkill] = useState('');
+  const [edu, setEdu] = useState([]);
+
   useEffect(() => {
     if (route.params?.email) {
       setEmail(route.params.email);
@@ -33,10 +36,10 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
     navigation.navigate('AddEducation');
   };
   const removeToken = async () => {
-    console.log('test 222');
     await AsyncStorage.removeItem('@token');
     navigation.navigate('SignIn');
   };
+  const removeEdu = (id) => {};
   return (
     <View style={styles.container}>
       {infoProfile == null ? (
@@ -102,13 +105,28 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
             <Text style={styles.subTitleTable}>Year</Text>
           </View>
           {/* item edu */}
-          <View style={styles.listItemExp}>
-            <Text style={styles.itemEXp}>T3h</Text>
-            <Text style={styles.itemEXp}>18/05/2020 - Now</Text>
-            <TouchableOpacity style={styles.buttonDelete}>
-              <Text style={{color: 'white', fontWeight: '500'}}>Delete</Text>
-            </TouchableOpacity>
-          </View>
+          {/* <View style={styles.listItemExp}></View> */}
+          {infoProfile.education.map((item, index) => {
+            return (
+              <View key={index}>
+                <Text>{item.school}</Text>
+                <Text>{`${item.from.slice(0, 10)} - ${
+                  item.to == null ? 'Now' : item.to.slice(0, 10)
+                }
+                `}</Text>
+                <TouchableOpacity
+                  style={styles.buttonDelete}
+                  onPress={() => {
+                    removeEdu(item._id);
+                  }}>
+                  <Text style={{color: 'white', fontWeight: '500'}}>
+                    Delete
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity onPress={removeToken} style={styles.buttonLogout}>
               <Text style={{color: 'white', fontWeight: '500'}}>LogOut</Text>

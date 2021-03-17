@@ -55,3 +55,8 @@ export const createProfile = (
 export const getAllProfile = () => ({
   type: GET_ALL_PROFILE_REQUES,
 });
+
+export const deleteEducation = (id) => ({
+  type: type,
+  payload
+})
