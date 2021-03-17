@@ -3,6 +3,8 @@ import {
   UPDATE_PROFILE_REQUEST,
   CREATE_PROFILE_REQUEST,
   GET_ALL_PROFILE_REQUES,
+  UPDATE_EXPERIENCE_REQUEST,
+  UPDATE_EDUCATION_REQUEST,
 } from '../type';
 
 export const checkProfile = () => ({
@@ -56,7 +58,39 @@ export const getAllProfile = () => ({
   type: GET_ALL_PROFILE_REQUES,
 });
 
-export const deleteEducation = (id) => ({
-  type: type,
-  payload
-})
+export const updateExperience = (
+  title,
+  company,
+  location,
+  from,
+  to,
+  current,
+  description,
+) => ({
+  type: UPDATE_EXPERIENCE_REQUEST,
+  title,
+  company,
+  location,
+  from,
+  to,
+  current,
+  description,
+});
+export const updateEducation = (
+  school,
+  degree,
+  from,
+  to,
+  fieldofstudy,
+  current,
+  description,
+) => ({
+  type: UPDATE_EDUCATION_REQUEST,
+  school,
+  degree,
+  from,
+  to,
+  fieldofstudy,
+  current,
+  description,
+});

@@ -49,12 +49,12 @@ const EditProfile = ({navigation, update, data}) => {
     navigation.navigate('Profile');
   };
   const renderData = () => {
-    console.log(data);
     setStatus(data.status);
     setCompany(data.company);
     setWebsite(data.website);
     setLocation(data.location);
     setGithub(data.github);
+    setSkills(data.skills.toString());
   };
   return (
     <ScrollView>

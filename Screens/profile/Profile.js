@@ -39,7 +39,7 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
     await AsyncStorage.removeItem('@token');
     navigation.navigate('SignIn');
   };
-  const removeEdu = (id) => {};
+
   return (
     <View style={styles.container}>
       {infoProfile == null ? (
@@ -104,8 +104,7 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
             <Text style={styles.subTitleTable}>Company </Text>
             <Text style={styles.subTitleTable}>Year</Text>
           </View>
-          {/* item edu */}
-          {/* <View style={styles.listItemExp}></View> */}
+
           {infoProfile.education.map((item, index) => {
             return (
               <View key={index}>
@@ -114,11 +113,7 @@ const Profile = ({navigation, infoProfile, route, profile}) => {
                   item.to == null ? 'Now' : item.to.slice(0, 10)
                 }
                 `}</Text>
-                <TouchableOpacity
-                  style={styles.buttonDelete}
-                  onPress={() => {
-                    removeEdu(item._id);
-                  }}>
+                <TouchableOpacity style={styles.buttonDelete}>
                   <Text style={{color: 'white', fontWeight: '500'}}>
                     Delete
                   </Text>

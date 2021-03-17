@@ -19,16 +19,16 @@ import * as ProfileAction from '../../redux/actions/profileAction';
 
 import {styles} from '../auth/style';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+
 const DevelopeScrenn = ({navigation, data, getProfileAction}) => {
   useEffect(() => {
     getProfileAction.getAllProfile();
   }, []);
-  console.log(data);
-
+  
   return (
     <ScrollView>
       {data ? (
-        <Container style={{borderWidth:0}}>
+        <Container style={{borderWidth: 0}}>
           <Header />
           <Content>
             <View style={{paddingLeft: 30}}>
