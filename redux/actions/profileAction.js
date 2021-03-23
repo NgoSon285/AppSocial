@@ -5,6 +5,8 @@ import {
   GET_ALL_PROFILE_REQUES,
   UPDATE_EXPERIENCE_REQUEST,
   UPDATE_EDUCATION_REQUEST,
+  DELETE_EXPERIENCE_REQUEST,
+  DELETE_EDUCATION_REQUEST,
 } from '../type';
 
 export const checkProfile = () => ({
@@ -77,20 +79,28 @@ export const updateExperience = (
   description,
 });
 export const updateEducation = (
-  school,
-  degree,
-  from,
-  to,
-  fieldofstudy,
   current,
+  degree,
   description,
+  fieldofstudy,
+  from,
+  school,
+  to,
 ) => ({
   type: UPDATE_EDUCATION_REQUEST,
-  school,
-  degree,
-  from,
-  to,
-  fieldofstudy,
   current,
+  degree,
   description,
+  fieldofstudy,
+  from,
+  school,
+  to,
+});
+export const deleteExperience = (id) => ({
+  type: DELETE_EXPERIENCE_REQUEST,
+  id,
+});
+export const deleteEducation = (id) => ({
+  type: DELETE_EDUCATION_REQUEST,
+  id,
 });

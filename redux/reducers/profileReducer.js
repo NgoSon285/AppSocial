@@ -5,6 +5,7 @@ import {
   GET_ALL_PROFILE_SUCCESS,
   UPDATE_EXPERIENCE_SUCCESS,
   UPDATE_EDUCATION_SUCCESS,
+  DELETE_EXPERIENCE_SUCCESS,
 } from '../type';
 
 const initialState = {
@@ -25,6 +26,8 @@ export default (state = initialState, action) => {
     case UPDATE_EXPERIENCE_SUCCESS:
       return {...state, data: action.data};
     case UPDATE_EDUCATION_SUCCESS:
+      return {...state, data: action.data};
+    case DELETE_EXPERIENCE_SUCCESS:
       return {...state, data: action.data};
     default:
       return state;

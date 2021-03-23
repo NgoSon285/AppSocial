@@ -17,7 +17,7 @@ export function* onSignUp(action) {
     yield put({type: SIGN_UP_SUCCESS, data: result.data});
     yield AsyncStorage.setItem('@token', result.data.token);
     if (action.navigation) {
-      action.navigation.navigate('SignIn');
+      action.navigation.navigate('Home');
     }
   } catch (error) {
     console.log('error sign up');

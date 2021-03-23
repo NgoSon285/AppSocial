@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import * as ProfileAction from '../../redux/actions/profileAction';
 import Profile from '../profile/Profile';
 import DevelopeScreen from '../profile/DevelopeScreen';
+import ListPost from '../post/ListPost';
 
 const Tab = createBottomTabNavigator();
 const Home = ({profile}) => {
@@ -20,6 +21,7 @@ const Home = ({profile}) => {
     <Tab.Navigator>
       <Tab.Screen name="DevelopeScreen" component={DevelopeScreen} />
       <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="ListPost" component={ListPost} />
     </Tab.Navigator>
   );
 };

@@ -12,6 +12,7 @@ import {
   Body,
   Right,
   Button,
+  Icon,
 } from 'native-base';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -24,15 +25,20 @@ const DevelopeScrenn = ({navigation, data, getProfileAction}) => {
   useEffect(() => {
     getProfileAction.getAllProfile();
   }, []);
-  
+
   return (
     <ScrollView>
       {data ? (
         <Container style={{borderWidth: 0}}>
-          <Header />
           <Content>
-            <View style={{paddingLeft: 30}}>
+            <View style={styles.titleHeader}>
+              <TouchableOpacity>
+                
+              </TouchableOpacity>
               <Text style={styles.titleDashboard}>Developers</Text>
+              <TouchableOpacity>
+                <Icon name="ios-menu" />
+              </TouchableOpacity>
             </View>
             <List>
               {data.map((item, index) => {

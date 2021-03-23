@@ -20,15 +20,18 @@ const AddEducation = ({navigation, data, update}) => {
   const [fieldofstudy, setFieldofstudy] = useState('');
   const [current, setCurrent] = useState(false);
   const [description, setDescription] = useState('');
+  useEffect(() => {
+    console.log(data.education);
+  }, []);
   const updateEducation = () => {
     update.updateEducation(
-      school,
-      degree,
-      from,
-      to,
-      fieldofstudy,
       current,
+      degree,
       description,
+      fieldofstudy,
+      from,
+      school,
+      to,
     );
     goBack();
   };

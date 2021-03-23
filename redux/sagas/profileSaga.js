@@ -12,10 +12,14 @@ import {
   UPDATE_EXPERIENCE_SUCCESS,
   UPDATE_EDUCATION_REQUEST,
   UPDATE_EXPERIENCE_REQUEST,
+  DELETE_EXPERIENCE_SUCCESS,
+  DELETE_EXPERIENCE_REQUEST,
+  DELETE_EDUCATION_SUCCESS,
+  DELETE_EDUCATION_REQUEST,
 } from '../type';
 import API from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {act} from 'react-test-renderer';
+
 
 export function* checkProfile() {
   try {
@@ -63,14 +67,14 @@ export function* createProfileSaga(action) {
 }
 export function* updateEducation(action) {
   try {
-    let result = yield API.post('api/profile/education', {
-      school: action.school,
-      degree: action.degree,
-      from: action.from,
-      to: action.to,
+    let result = yield API.put('api/profile/education', {
       current: action.current,
-      fieldofstudy: action.fieldofstudy,
+      degree: action.degree,
       desciption: action.desciption,
+      fieldofstudy: action.fieldofstudy,
+      from: action.from,
+      school: action.school,
+      to: action.to,
     });
     yield put({type: UPDATE_EDUCATION_SUCCESS, data: result.data});
   } catch (error) {
@@ -92,6 +96,22 @@ export function* updateExperience(action) {
     yield put({type: UPDATE_EXPERIENCE_SUCCESS, data: result.data});
   } catch (error) {
     console.log('error update exp', error);
+  }
+}
+export function* deleteExperience(action) {
+  try {
+    let result = yield API.delete(`${'api/profile/experience/' + action.id}`);
+    yield put({type: DELETE_EXPERIENCE_SUCCESS, data: result.data});
+  } catch (error) {
+    console.log('error delete exp');
+  }
+}
+export function* deleteEducation(action) {
+  try {
+    let result = yield API.delete(`${'api/profile/education/' + action.id}`);
+    yield put({type: DELETE_EDUCATION_SUCCESS, data: result.data});
+  } catch (error) {
+    console.log('error delete edu');
   }
 }
 export function* getAllProfilesSaga(action) {
@@ -119,4 +139,10 @@ export function* watchUpdateEducation() {
 }
 export function* watchUpdateExperience() {
   yield takeLatest(UPDATE_EXPERIENCE_REQUEST, updateExperience);
+}
+export function* watchDeleteExperience() {
+  yield takeLatest(DELETE_EXPERIENCE_REQUEST, deleteExperience);
+}
+export function* watchDeleteEducation() {
+  yield takeLatest(DELETE_EDUCATION_REQUEST, deleteEducation);
 }

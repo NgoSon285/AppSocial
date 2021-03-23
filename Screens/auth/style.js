@@ -3,13 +3,67 @@ const {width, height} = Dimensions.get('screen');
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    paddingHorizontal: 20,
     paddingTop: 50,
+    width,
+    height,
     backgroundColor: '#fff',
+  },
+  logo: {
+    position: 'absolute',
+    top: 0,
+    width: 150,
+    height: 150,
+  },
+  titleHeader: {
+    flexDirection:'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  header: {
+    width,
+    height: height * 0.25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backgroundTop: {
+    width,
+    height: height * 0.25,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  contenLogin: {
+    width,
+    height: height * 0.5,
+  },
+  backgroundBotton: {
+    width,
+    height: height * 0.25,
+  },
+  textSignIn: {
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '600',
+    width: 170,
+    // fontFamily: 'Montserrat',
+  },
+  textSignUp: {
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#fff',
+    position: 'relative',
+    bottom: 100,
+  },
+  formInput: {
+    width: width * 0.9,
+    height: height * 0.5,
+    marginTop: 50,
   },
   text: {
     color: 'white',
   },
+
   cover: {width, height: height * 0.25},
   avatar: {
     flex: 1,
@@ -48,15 +102,13 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
   },
   button: {
-    width: '90%',
+    width: '60%',
     height: 50,
-    borderColor: 'green',
-    borderWidth: 1,
+    backgroundColor: '#E9446A',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    // margin: 20,
-    marginVertical: 20,
+    marginVertical: 50,
   },
   footer: {
     // width,
@@ -110,9 +162,10 @@ export const styles = StyleSheet.create({
   titleTable: {
     flexDirection: 'row',
     backgroundColor: '#eee',
+    marginVertical: 10,
   },
   subTitleTable: {
-    width: '35%',
+    width: '30%',
     textAlign: 'center',
     height: 40,
     lineHeight: 40,
@@ -125,10 +178,11 @@ export const styles = StyleSheet.create({
   },
   listItemExp: {
     flexDirection: 'row',
-    width: '90%',
+    width,
+    marginVertical: 10,
   },
   itemEXp: {
-    width: '40%',
+    width: '30%',
     textAlign: 'center',
     height: 40,
     lineHeight: 40,
@@ -187,6 +241,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
+    marginVertical: 20,
   },
   buttonGoBack: {
     width: 100,
@@ -207,5 +262,45 @@ export const styles = StyleSheet.create({
   subTitle: {
     fontSize: 18,
     fontWeight: '600',
+  },
+  post: {
+    // borderBottomWidth: 1,
+    // borderTopWidth: 1,
+    // borderColor: 'black',
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    marginVertical: 10,
+
+    padding: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  titleListPost: {
+    fontSize: 24,
+    fontWeight: '600',
+    backgroundColor: 'rgb(23,162,184)',
+    color: 'white',
+    height: 40,
+    lineHeight: 40,
+  },
+  itemPost: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagePost: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginVertical: 20,
+  },
+  post_date: {
+    color: '#aaa',
   },
 });
