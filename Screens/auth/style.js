@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     height: 150,
   },
   titleHeader: {
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -124,9 +124,11 @@ export const styles = StyleSheet.create({
   },
   titleDashboard: {
     fontWeight: '900',
-    fontSize: 30,
-    color: 'rgb(23,162,184)',
+    fontSize: 25,
+    // color: 'rgb(23,162,184)',
+    color: '#161F3D',
     marginVertical: 30,
+    fontFamily: 'Montserrat-SemiBold',
   },
   subTitleDashboard: {
     fontSize: 24,
@@ -289,6 +291,7 @@ export const styles = StyleSheet.create({
     color: 'white',
     height: 40,
     lineHeight: 40,
+    paddingLeft: 20,
   },
   itemPost: {
     justifyContent: 'center',

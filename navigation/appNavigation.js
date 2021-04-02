@@ -12,6 +12,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AddExperience from '../Screens/profile/AddExperience';
 import AddEducation from '../Screens/profile/AddEducation';
 import ProfileDetail from '../Screens/profile/ProfileDetail';
+import postDetail from '../Screens/post/postDetail';
 const Stack = createStackNavigator();
 // create a component
 const AppNavigation = () => {
@@ -30,6 +31,7 @@ const AppNavigation = () => {
         <Stack.Screen name="AddExperience" component={AddExperience} />
         <Stack.Screen name="AddEducation" component={AddEducation} />
         <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
+        <Stack.Screen name="postDetail" component={postDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -41,7 +41,7 @@ const SignUp = ({navigation, actionAuth}) => {
     navigation.navigate('SignIn');
   };
   const onSignUp = () => {
-    actionAuth.signUpRequest(name, email, password, navigation);
+    // actionAuth.signUpRequest(name, email, password, navigation);
   };
   return (
     <View>
@@ -74,7 +74,7 @@ const SignUp = ({navigation, actionAuth}) => {
               setName(values.name);
               setEmail(values.email);
               setPassword(values.password);
-              onSignUp();
+              actionAuth.signUpRequest(name, email, password, navigation);
             }}>
             {({handleChange, handleBlur, handleSubmit, errors, values}) => (
               <>
@@ -154,6 +154,6 @@ const SignUp = ({navigation, actionAuth}) => {
 };
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
-    actionAuth: bindActionCreators(AuthAction, dispatch),
+  actionAuth: bindActionCreators(AuthAction, dispatch),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

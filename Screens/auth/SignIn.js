@@ -30,7 +30,7 @@ const SignIn = ({navigation, authAction}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const onSignIn = () => {
-    authAction.signInRequest(email, password, navigation);
+    // authAction.signInRequest(email, password, navigation);
   };
   const nextScreenSignUp = () => {
     navigation.navigate('SignUp');
@@ -64,8 +64,7 @@ const SignIn = ({navigation, authAction}) => {
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: ''}}
             onSubmit={(values) => {
-              setEmail(values.email);
-              setPassword(values.password);
+              authAction.signInRequest(values.email, values.password, navigation);
             }}>
             {({handleChange, handleBlur, handleSubmit, errors, values}) => (
               <>
@@ -106,13 +105,12 @@ const SignIn = ({navigation, authAction}) => {
                   <TouchableOpacity
                     onPress={() => {
                       handleSubmit();
-                      onSignIn();
                     }}
                     style={styles.button}>
                     <Text style={styles.text}>SignIn</Text>
                   </TouchableOpacity>
                   <Text>
-                    Don't have an account?{' '}
+                    Don't have an account?
                     <Text
                       style={{color: '#ff0019'}}
                       onPress={() => {

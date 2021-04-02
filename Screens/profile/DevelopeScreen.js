@@ -32,12 +32,10 @@ const DevelopeScrenn = ({navigation, data, getProfileAction}) => {
         <Container style={{borderWidth: 0}}>
           <Content>
             <View style={styles.titleHeader}>
-              <TouchableOpacity>
-                
-              </TouchableOpacity>
+              <TouchableOpacity></TouchableOpacity>
               <Text style={styles.titleDashboard}>Developers</Text>
               <TouchableOpacity>
-                <Icon name="ios-menu" />
+                <Icon name="search" type="EvilIcons" />
               </TouchableOpacity>
             </View>
             <List>

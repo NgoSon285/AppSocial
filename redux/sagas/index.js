@@ -2,7 +2,15 @@ import {all, call, delay, put, takeEvery, takeLatest} from 'redux-saga/effects';
 import {updateExperience} from '../actions/profileAction';
 import {ADD, ADD_REQUEST, SIGN_UP_REQUEST} from '../type';
 import {watchSignIn, watchSignUp} from './authSaga';
-import {watchAllPost, watchCreatePost} from './postSaga';
+import {
+  watchAllPost,
+  watchCreateComment,
+  watchCreatePost,
+  watchDeleteComment,
+  watchDeletePost,
+  watchLikePost,
+  watchUnLikePost,
+} from './postSaga';
 import {
   watchAllProfile,
   watchCreateProfile,
@@ -33,6 +41,11 @@ export default function* rootSaga() {
     call(watchDeleteExperience),
     call(watchDeleteEducation),
     call(watchAllPost),
-    call(watchCreatePost)
+    call(watchCreatePost),
+    call(watchLikePost),
+    call(watchDeletePost),
+    call(watchUnLikePost),
+    call(watchDeleteComment),
+    call(watchCreateComment)
   ]);
 }
