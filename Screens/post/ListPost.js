@@ -28,47 +28,46 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as PostAction from '../../redux/actions/postAction';
 
-const ListPost = ({dataPost, post, infoProfile, navigation}) => {
+const ListPost = ({data, post, infoProfile, navigation}) => {
   const [contenPost, setContenPost] = useState('');
-  const [data, setData] = useState(null);
-  const date = new Date();
+  const [newData, setNewData] = useState(null);
+  // const date = new Date();
   useEffect(() => {
     getPosts();
   }, []);
-  useEffect(() => {
-    if (dataPost && dataPost.length > 0) {
-      setData(dataPost);
-    }
-  }, [dataPost]);
   const getPosts = () => {
     post.getAllPost();
   };
   const createAPost = () => {
     if (contenPost !== '') {
-      data.unshift({
-        text: contenPost,
-        name: infoProfile.user.name,
-        avatar: infoProfile.user.avatar,
-        date: `${date.getFullYear()} - 0${date.getMonth()} - 0${date.getDay()}`,
-        likes: [],
-        comments: [],
-      });
       post.createPost(contenPost);
-      getPosts();
+      // getPosts();
     } else {
       Alert.alert('!!!!', 'Say Something......');
     }
   };
   const likeAPost = (id) => {
-    
+    if (data) {
+      data.map((item) => {
+        if (item._id == id) {
+          item.likes.push(infoProfile.user._id);
+        }
+      });
+    }
     post.likePost(id);
-    // getPosts();
   };
   const removeAPost = (id) => {
     post.deletePost(id);
     // getPosts();
   };
   const unLikeAPost = (id) => {
+    // if (data) {
+    //   data.map((item) => {
+    //     if (item._id == id ) {
+    //       return item.likes.user != infoProfile.user._id;
+    //     }
+    //   });
+    // }
     post.unLikePost(id);
     // getPosts();
   };
@@ -77,8 +76,7 @@ const ListPost = ({dataPost, post, infoProfile, navigation}) => {
   };
 
   console.log('fist data', data);
-  console.log('data Reducer', dataPost);
-  // console.log(date.getFullYear(), date.getMonth(), date.getDate());
+  // console.log('data', newData);
 
   return (
     <ScrollView style={styles.container}>
@@ -191,7 +189,7 @@ const ListPost = ({dataPost, post, infoProfile, navigation}) => {
   );
 };
 const mapStateToProps = (state) => ({
-  dataPost: state.postReducer.data,
+  data: state.postReducer.data,
   infoProfile: state.profileReducer.data,
 });
 const mapDispatchToProps = (dispatch) => ({

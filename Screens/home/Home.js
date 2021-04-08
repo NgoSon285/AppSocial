@@ -1,6 +1,6 @@
 //import liraries
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -19,6 +19,7 @@ const Home = ({profile}) => {
   };
   return (
     <Tab.Navigator>
+      
       <Tab.Screen name="DevelopeScreen" component={DevelopeScreen} />
       <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="ListPost" component={ListPost} />

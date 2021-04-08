@@ -27,7 +27,7 @@ export const deletePost = (id) => ({
   type: DELETE_A_POST_REQUEST,
   id,
 });
-export const deleteComment = (id,comment_id) => ({
+export const deleteComment = (id, comment_id) => ({
   type: DELETE_A_COMMENT_REQUEST,
   id,
   comment_id,

@@ -39,7 +39,6 @@ export function* createAPost(action) {
 export function* likePostSaga(action) {
   try {
     let result = yield API.put(`api/posts/like/${action.id}`);
-    console.log('saga log result', result);
     yield put({type: LIKE_POST_SUCCESS, data: result.data});
   } catch (error) {
     console.log(error);

@@ -20,7 +20,6 @@ import {
 import API from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 export function* checkProfile() {
   try {
     let result = yield API.get('api/profile/me');
