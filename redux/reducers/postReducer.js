@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   data: null,
+  comment: null,
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +21,6 @@ export default (state = initialState, action) => {
     case CREATE_A_POST_SUCCESS: {
       let stateCreate = [...state.data];
       let post = action.data;
-      console.log(post);
       stateCreate.unshift(post);
       return {stateCreate, data: stateCreate};
     }
@@ -36,7 +36,8 @@ export default (state = initialState, action) => {
     case DELETE_A_COMMENT_SUCCESS:
       return {...state, data: action.data};
     case COMMENT_POST_SUCCESS:
-      return {...state, data: action.data};
+      let stateComment = [...state];
+      return {stateComment, data: stateComment};
     default:
       return state;
   }

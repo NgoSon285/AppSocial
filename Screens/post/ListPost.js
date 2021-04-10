@@ -30,46 +30,66 @@ import * as PostAction from '../../redux/actions/postAction';
 
 const ListPost = ({data, post, infoProfile, navigation}) => {
   const [contenPost, setContenPost] = useState('');
-  const [newData, setNewData] = useState(null);
+
   // const date = new Date();
   useEffect(() => {
     getPosts();
   }, []);
+
   const getPosts = () => {
     post.getAllPost();
   };
   const createAPost = () => {
     if (contenPost !== '') {
       post.createPost(contenPost);
-      // getPosts();
     } else {
       Alert.alert('!!!!', 'Say Something......');
     }
+    getPosts();
   };
-  const likeAPost = (id) => {
+  const removeAPost = (id) => {
+    if (data) {
+      data.filter((post) => {
+        return post._id !== id;
+      });
+    }
+    post.deletePost(id);
+    getPosts();
+  };
+  const likeAPost = async (id) => {
     if (data) {
       data.map((item) => {
         if (item._id == id) {
-          item.likes.push(infoProfile.user._id);
+          if (item.likes.length > 1) {
+            item.likes.map((user) => {
+              if (user.user !== infoProfile.user._id) {
+                item.likes.unshift(infoProfile.user._id);
+              }
+            });
+          } else {
+            item.likes.push(infoProfile.user._id);
+          }
         }
       });
     }
     post.likePost(id);
+    await getPosts();
   };
-  const removeAPost = (id) => {
-    post.deletePost(id);
-    // getPosts();
-  };
+
   const unLikeAPost = (id) => {
-    // if (data) {
-    //   data.map((item) => {
-    //     if (item._id == id ) {
-    //       return item.likes.user != infoProfile.user._id;
-    //     }
-    //   });
-    // }
+    if (data) {
+      data.map((item) => {
+        if (item._id == id) {
+          if (item.likes.length > 1) {
+            item.likes.filter((user) => {
+              return user != infoProfile.user._id;
+            });
+          }
+        }
+      });
+    }
     post.unLikePost(id);
-    // getPosts();
+    getPosts();
   };
   const nextScreenDetail = (data) => {
     navigation.navigate('postDetail', data);

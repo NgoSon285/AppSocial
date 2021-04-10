@@ -28,9 +28,16 @@ import {bindActionCreators} from 'redux';
 
 const postDetail = ({route, navigation, infoProfile, post}) => {
   const data = route.params;
+  console.log(data);
   const [comment, setComment] = useState('');
-
   const createComments = () => {
+    // if (data) {
+    //   console.log(data);
+    //   data.map((comment) => {
+    //     comment.unshift(comment);
+    //   });
+    // }
+    console.log(data);
     post.createComment(data._id, comment);
   };
   const removeComments = (comment_id) => {
