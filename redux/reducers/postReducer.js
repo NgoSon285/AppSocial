@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case DELETE_A_COMMENT_SUCCESS:
       return {...state, data: action.data};
     case COMMENT_POST_SUCCESS:
-      let stateComment = [...state];
+      let stateComment = [...state.data];
       return {stateComment, data: stateComment};
     default:
       return state;

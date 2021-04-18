@@ -65,6 +65,7 @@ export function* deleteCommentSaga(action) {
     let result = yield API.delete(
       `api/posts/comment/${action.id}/${action.comment_id})`,
     );
+    console.log(result.data);
     yield put({type: DELETE_A_COMMENT_SUCCESS, data: result.data});
   } catch (error) {
     console.log('error delete comment', error);

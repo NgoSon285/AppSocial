@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -26,21 +26,33 @@ import {
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-const postDetail = ({route, navigation, infoProfile, post}) => {
-  const data = route.params;
-  console.log(data);
+const postDetail = ({route, navigation, infoProfile, post, dataPost}) => {
+  const date = new Date();
+  const [data, setData] = useState(route.params);
   const [comment, setComment] = useState('');
+  useEffect(() => {
+    setData(route.params);
+  }, [route.params]);
   const createComments = () => {
-    // if (data) {
-    //   console.log(data);
-    //   data.map((comment) => {
-    //     comment.unshift(comment);
-    //   });
-    // }
-    console.log(data);
-    post.createComment(data._id, comment);
+    if (data) {
+      let newComment = {
+        name: infoProfile.user.name,
+        avatar: infoProfile.user.avatar,
+        text: comment,
+        date: `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`,
+        user: infoProfile.user._id,
+      };
+      data.comments.unshift(newComment);
+      post.createComment(data._id, comment);
+    }
   };
   const removeComments = (comment_id) => {
+    if (data) {
+      console.log(data._id, '/', comment_id);
+      data.comments.filter((comment) => {
+        return comment._id !== comment_id;
+      });
+    }
     post.deleteComment(data._id, comment_id);
   };
   const back = () => {
@@ -141,6 +153,7 @@ const postDetail = ({route, navigation, infoProfile, post}) => {
 };
 const mapStateToProps = (state) => ({
   infoProfile: state.profileReducer.data,
+  dataPost: state.postReducer.data,
 });
 const mapDispatchToProps = (dispatch) => ({
   post: bindActionCreators(PostAction, dispatch),

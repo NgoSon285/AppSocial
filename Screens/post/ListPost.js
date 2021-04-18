@@ -35,7 +35,6 @@ const ListPost = ({data, post, infoProfile, navigation}) => {
   useEffect(() => {
     getPosts();
   }, []);
-
   const getPosts = () => {
     post.getAllPost();
   };
@@ -57,23 +56,27 @@ const ListPost = ({data, post, infoProfile, navigation}) => {
     getPosts();
   };
   const likeAPost = async (id) => {
-    if (data) {
-      data.map((item) => {
-        if (item._id == id) {
-          if (item.likes.length > 1) {
-            item.likes.map((user) => {
-              if (user.user !== infoProfile.user._id) {
-                item.likes.unshift(infoProfile.user._id);
-              }
-            });
-          } else {
-            item.likes.push(infoProfile.user._id);
+    try {
+      if (data) {
+        data.map((item) => {
+          if (item._id == id) {
+            if (item.likes.length > 1) {
+              item.likes.map((user) => {
+                if (user.user !== infoProfile.user._id) {
+                  item.likes.unshift(infoProfile.user._id);
+                }
+              });
+            } else {
+              item.likes.push(infoProfile.user._id);
+            }
           }
-        }
-      });
+        });
+        await post.likePost(id);
+        await getPosts();
+      }
+    } catch (error) {
+      console.log(error);
     }
-    post.likePost(id);
-    await getPosts();
   };
 
   const unLikeAPost = (id) => {
@@ -95,7 +98,7 @@ const ListPost = ({data, post, infoProfile, navigation}) => {
     navigation.navigate('postDetail', data);
   };
 
-  console.log('fist data', data);
+  // console.log('fist data', data);
   // console.log('data', newData);
 
   return (
