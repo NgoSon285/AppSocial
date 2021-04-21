@@ -12,10 +12,10 @@ const AuthLoading = ({navigation}) => {
     try {
       const tokenAsync = await AsyncStorage.getItem('@token');
       if (tokenAsync) {
-        navigation.navigate('Home')
+        navigation.navigate('Home');
         return;
       }
-      navigation.navigate('SignIn')
+      navigation.navigate('SignIn');
     } catch (error) {
       console.log(error);
     }

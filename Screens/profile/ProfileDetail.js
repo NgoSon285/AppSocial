@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image,ScrollView} from 'react-native';
 import {
   Container,
   Header,
@@ -26,7 +26,7 @@ const ProfileDetail = ({route, navigation}) => {
   const data = route.params;
   //   console.log('data detail', typeof data);
   return (
-    <Container style={styles.container}>
+    <ScrollView >
       <Container style={{borderWidth: 0}}>
         <Header style={{backgroundColor: 'transparent', borderWidth: 0}}>
           <Left style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -35,7 +35,11 @@ const ProfileDetail = ({route, navigation}) => {
               onPress={() => {
                 navigation.navigate('DevelopeScreen');
               }}>
-              <Icon name="arrow-left" type={'FontAwesome5'} />
+              <Icon
+                name="arrow-left"
+                type={'FontAwesome5'}
+                style={{fontSize: 20, marginRight: 20}}
+              />
             </Button>
             <Text style={styles.title}>{data.item.user.name}</Text>
           </Left>
@@ -151,7 +155,7 @@ const ProfileDetail = ({route, navigation}) => {
           </Card>
         </Content>
       </Container>
-    </Container>
+    </ScrollView>
   );
 };
 
